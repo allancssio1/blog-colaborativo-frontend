@@ -1,30 +1,21 @@
 import { usePosts } from "../hooks/usePosts";
 import { PostForm } from "../components/Posts/PostForm";
 import { useNavigate } from "react-router-dom";
-import { useToast } from "@/components/ui/use-toast";
+import { toast } from "sonner";
 import { ErrorMessage } from "../components/Common/ErrorMessage";
+import { Card, CardContent } from "@/components/ui/card";
 
 export default function CreatePostPage() {
   const { createPost, loading, error } = usePosts();
   const navigate = useNavigate();
-  const { toast } = useToast();
 
   const handleSubmit = async (data: { title: string; content: string }) => {
     try {
       await createPost(data);
-      toast({
-        title: "Sucesso",
-        description: "Post criado com sucesso!",
-        className: "bg-green-500 text-white", // Optional custom styling
-      });
+      toast.success("Post criado com sucesso!");
       navigate("/posts");
     } catch (err) {
-      // Error is stored in 'error' state, but we can also toast
-      toast({
-        title: "Erro",
-        description: "Falha ao criar post.",
-        variant: "destructive",
-      });
+      toast.error("Falha ao criar post.");
     }
   };
 
@@ -36,14 +27,16 @@ export default function CreatePostPage() {
       </div>
       
       {error && <ErrorMessage message={error} />}
-      
-      <div className="bg-card p-6 rounded-lg border shadow-sm">
-        <PostForm 
-          onSubmit={handleSubmit} 
-          isLoading={loading} 
-          submitLabel="Publicar Post" 
-        />
-      </div>
+
+      <Card>
+        <CardContent className="pt-6">
+          <PostForm
+            onSubmit={handleSubmit}
+            isLoading={loading}
+            submitLabel="Publicar Post"
+          />
+        </CardContent>
+      </Card>
     </div>
   );
 }

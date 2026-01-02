@@ -15,8 +15,6 @@ interface PostDetailProps {
 
 export function PostDetail({ post, onDelete, isDeleting }: PostDetailProps) {
   const { user } = useAuth();
-  // Ensure comparison logic is correct based on data types. 
-  // user.id and post.author_id should act same (string).
   const isAuthor = user && post && user.id === post.author_id;
 
   return (

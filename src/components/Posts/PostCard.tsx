@@ -9,8 +9,8 @@ interface PostCardProps {
 
 export function PostCard({ post }: PostCardProps) {
   return (
-    <Link to={`/posts/${post.id}`} className="block h-full">
-      <Card className="hover:shadow-md transition-shadow cursor-pointer h-full flex flex-col">
+    <Link to={`/posts/${post.id}`} className="block h-full transition-transform hover:-translate-y-1">
+      <Card className="hover:shadow-md h-full flex flex-col">
         <CardHeader>
           <CardTitle className="line-clamp-2 text-xl">{post.title}</CardTitle>
         </CardHeader>

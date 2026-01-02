@@ -4,14 +4,10 @@ import { cn } from "@/lib/utils";
 export function Navbar() {
   const location = useLocation();
   
-  const navItems = [
-    { href: "/posts", label: "Posts" },
-    // Add more if needed. "Novo Post" is usually a CTA, not a nav link, but can be here.
-    // The requirement says "Header with ... links".
-  ];
+  const navItems: { href: string; label: string }[] = [];
 
   return (
-    <nav className="flex items-center space-x-4 lg:space-x-6 mx-6">
+    <nav className="flex items-center space-x-4 lg:space-x-6">
       {navItems.map((item) => (
         <Link
           key={item.href}

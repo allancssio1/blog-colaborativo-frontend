@@ -35,13 +35,10 @@ export function PostDelete({ onConfirm, isLoading = false }: PostDeleteProps) {
         </AlertDialogHeader>
         <AlertDialogFooter>
           <AlertDialogCancel disabled={isLoading}>Cancelar</AlertDialogCancel>
-          <AlertDialogAction 
+          <AlertDialogAction
             onClick={() => {
-              // Prevent closing immediately if we want to show loading state, 
-              // but usually Shadcn closes on click. 
-              // For simplicity, we trigger the action.
               onConfirm();
-            }} 
+            }}
             className="bg-destructive text-destructive-foreground hover:bg-destructive/90"
             disabled={isLoading}
           >
